@@ -59,4 +59,30 @@ ggplot(diamonds, aes(x = carat, y = price, color = clarity)) +
     legend.title = element_text(face = "bold")
   )
 ```
+# Q3: Tortilla Prices in Mexico
 
+I did include a **init** for libraries and data here.
+
+```{r, error = TRUE}
+#| echo: false
+#| include: false
+library(tidyverse)
+library(readr)
+library(knitr)
+library(dplyr)
+tortilla_data <- read_csv("/Users/aiden/Downloads/q/tortilla_data.csv")
+```
+
+a\. Finding Average Price for 2007.
+
+```{r, error = TRUE}
+#| echo: true
+#| include: true
+#| message: false
+#| warning: false
+avg_2007 <- tortilla_data %>%
+  filter(year == 2007) %>%
+  summarise(avg_price = mean(price, na.rm = TRUE))
+
+cat("The average price of tortillas in 2007 was:", round(avg_2007$avg_price, 2), "pesos\n")
+```
