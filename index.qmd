@@ -1,0 +1,36 @@
+---
+title: "Activity #10: Quarto"
+format:
+  html:
+    math: true
+---
+
+## Q1: Plot \\(h(x) \\; for \\; x \\in \[0,1\]\\).
+
+Considering the function \$\$h(x) = \\big\[\\cos(4x)+\\tan(0.5x)\\big\]\^4\$\$
+
+```{r}
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
+library(ggplot2)
+myFunction <- function(x) {
+  y <- (cos(4 * x) + tan(0.5 * x))^4
+  return(y)
+}
+ggplot() +
+  stat_function(
+    fun = myFunction,
+    xlim = c(0, 1),
+    n = 1000
+  ) +
+  theme_bw() +
+  labs(
+    x = "x",
+    y = "h(x)"
+  )
+
+```
+
+
