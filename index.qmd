@@ -33,4 +33,30 @@ ggplot() +
 
 ```
 
+# Q2: Diamonds Plot
+
+```{r}
+#| echo: true
+#| include: true
+#| message: false
+#| warning: false
+data(diamonds)
+ggplot(diamonds, aes(x = carat, y = price, color = clarity)) +
+  geom_point(alpha = 0.5, size = 1.5) +
+  labs(
+    title = "Relationship Between Diamond Carat and Price",
+    subtitle = "Colored by Clarity Level",
+    x = "Carat (Weight)",
+    y = "Price (USD)",
+    color = "Clarity"
+  ) +
+  scale_color_brewer(palette = "Dark2") +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "right",
+    legend.title = element_text(face = "bold")
+  )
+```
 
