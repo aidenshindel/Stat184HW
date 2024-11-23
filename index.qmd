@@ -100,3 +100,30 @@ avg_2024 <- tortilla_data %>%
 cat("The average price of tortillas in 2024 was:", round(avg_2024$avg_price, 2), "pesos\n")
 
 ```
+c\. Find the percent change in the average price of tortillas across all six states together from the year 2007 to 2024
+
+```{r, error = TRUE}
+#| echo: true
+#| include: true
+percent_change <- ((avg_2024$avg_price - avg_2007$avg_price) / avg_2007$avg_price) * 100
+cat("The average percent change of tortillas:", percent_change, "pesos\n")
+```
+
+d\. Make a plot that shows the average price of tortillas (across all six states together) each year from the years 2007 to 2024.
+
+```{r, error = TRUE}
+#| echo: true
+#| include: true
+yearly_avg <- tortilla_data %>%
+  group_by(year) %>%
+  summarise(avg_price = mean(price, na.rm = TRUE))
+
+ggplot(yearly_avg, aes(x = year, y = avg_price)) +
+  geom_line(color = "blue", linewidth = 1) + 
+  geom_point(color = "red", size = 2) +
+  labs(
+    title = "Average Tortilla Prices Over Time (2007–2024)",
+    x = "Year", y = "Average Price (MXN)"
+  ) +
+theme_minimal()
+```
