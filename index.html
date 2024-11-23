@@ -223,6 +223,115 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>e. For the year 2016, provide summary statistics for each of the six states’ price of tortillas. Make a table of the average price of tortillas in each state in 2016. Make side-by-side boxplots for each state in 2016.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>summary_2016 <span class="ot">&lt;-</span> tortilla_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_price =</span> <span class="fu">mean</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_price =</span> <span class="fu">median</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_price =</span> <span class="fu">min</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_price =</span> <span class="fu">max</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">price_sd =</span> <span class="fu">sd</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary_2016, <span class="at">caption =</span> <span class="st">"Summary Statistics for Tortilla Prices by State in 2016"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Summary Statistics for Tortilla Prices by State in 2016</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 14%">
+<col style="width: 19%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">state</th>
+<th style="text-align: right;">avg_price</th>
+<th style="text-align: right;">median_price</th>
+<th style="text-align: right;">min_price</th>
+<th style="text-align: right;">max_price</th>
+<th style="text-align: right;">price_sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BajaCalifornia</td>
+<td style="text-align: right;">13.85330</td>
+<td style="text-align: right;">10.90</td>
+<td style="text-align: right;">9.63</td>
+<td style="text-align: right;">17.71</td>
+<td style="text-align: right;">3.636626</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chihuahua</td>
+<td style="text-align: right;">13.14060</td>
+<td style="text-align: right;">11.36</td>
+<td style="text-align: right;">11.06</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: right;">1.832002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Coahuila</td>
+<td style="text-align: right;">11.72283</td>
+<td style="text-align: right;">12.60</td>
+<td style="text-align: right;">9.77</td>
+<td style="text-align: right;">13.40</td>
+<td style="text-align: right;">1.482322</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NuevoLeon</td>
+<td style="text-align: right;">12.12871</td>
+<td style="text-align: right;">14.00</td>
+<td style="text-align: right;">10.03</td>
+<td style="text-align: right;">14.29</td>
+<td style="text-align: right;">1.953983</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sonora</td>
+<td style="text-align: right;">13.53731</td>
+<td style="text-align: right;">10.30</td>
+<td style="text-align: right;">9.93</td>
+<td style="text-align: right;">19.00</td>
+<td style="text-align: right;">3.714320</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tamaulipas</td>
+<td style="text-align: right;">13.30266</td>
+<td style="text-align: right;">11.50</td>
+<td style="text-align: right;">10.50</td>
+<td style="text-align: right;">16.00</td>
+<td style="text-align: right;">2.165758</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tortilla_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>), <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> state), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Tortilla Prices by State in 2016"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Side-by-side Boxplots for Each State"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"State"</span>, <span class="at">y =</span> <span class="st">"Price (MXN)"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 </section>
 

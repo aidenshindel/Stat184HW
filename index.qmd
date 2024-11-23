@@ -127,3 +127,38 @@ ggplot(yearly_avg, aes(x = year, y = avg_price)) +
   ) +
 theme_minimal()
 ```
+
+e\. For the year 2016, provide summary statistics for each of the six states’ price of tortillas. Make a table of the average price of tortillas in each state in 2016. Make side-by-side boxplots for each state in 2016.
+
+```{r, error = TRUE}
+#| echo: true
+#| include: true
+summary_2016 <- tortilla_data %>%
+  filter(year == 2016) %>%
+  group_by(state) %>%
+  summarise(
+    avg_price = mean(price, na.rm = TRUE),
+    median_price = median(price, na.rm = TRUE),
+    min_price = min(price, na.rm = TRUE),
+    max_price = max(price, na.rm = TRUE),
+    price_sd = sd(price, na.rm = TRUE)
+  )
+
+kable(summary_2016, caption = "Summary Statistics for Tortilla Prices by State in 2016")
+
+ggplot(tortilla_data %>%
+         filter(year == 2016), aes(x = state, y = price)) +
+  geom_boxplot(aes(color = state), fill = "grey", alpha = 0.5) +
+  labs(
+    title = "Distribution of Tortilla Prices by State in 2016",
+    subtitle = "Side-by-side Boxplots for Each State",
+    x = "State", y = "Price (MXN)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+
+```
