@@ -187,3 +187,8 @@ ggplot(nuevo_leon_data, aes(x = year, y = price, color = storeType)) +
   )
 
 ```
+![Figure 1](https://www.glutenfreealchemist.com/wp-content/uploads/2021/08/1-ultimate-gluten-free-wraps-1024x683.jpg){width="256"}
+
+**Figure 1**: A traditional Mexican tortilla. *Image source*: [GlutenFreeAlchemist, 2021](https://www.glutenfreealchemist.com/wp-content/uploads/2021/08/1-ultimate-gluten-free-wraps-1024x683.jpg).
+
+The data used from the [Diamonds dataset](https://ggplot2.tidyverse.org/reference/diamonds.html) & [Tortilla Prices in Mexico dataset on Kaggle](https://www.kaggle.com/datasets/richave/tortilla-prices-in-mexico).
