@@ -162,3 +162,28 @@ ggplot(tortilla_data %>%
   )
 
 ```
+
+f\. For the state of Nuevo León, make an overlapping plot of the price of tortillas each year from 2007 to 2024 based on store type (i.e., small businesses vs. large corporations). Comment on your findings.
+
+```{r, error = TRUE}
+#| echo: true
+#| include: true
+nuevo_leon_data <- tortilla_data %>%
+  filter(state == "NuevoLeon") %>%
+  filter(year >= 2007 & year <= 2024)
+
+ggplot(nuevo_leon_data, aes(x = year, y = price, color = storeType)) +
+  geom_line(linewidth = 1.2) + 
+  geom_point(size = 2) +
+  labs(
+    title = "Price of Tortillas in Nuevo León (2007-2024) by Store Type",
+    subtitle = "Comparison of Small Businesses vs Large Corporations",
+    x = "Year", y = "Price (MXN)", color = "Store Type"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+
+```
